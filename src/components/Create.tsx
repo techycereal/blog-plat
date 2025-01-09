@@ -20,7 +20,7 @@ export default function Create() {
         e.preventDefault();
         if (!isAuthenticated) return; // Prevent submitting if not authenticated
 
-        const response = await axios.post('http://localhost:3009/post', {
+        const response = await axios.post('https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/post', {
             name: title,
             content,
             likes: 0

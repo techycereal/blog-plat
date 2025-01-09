@@ -48,14 +48,14 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
 
   const fetchBlogPosts = async (): Promise<void> => {
     const posts: BlogPost[] = [];
-    const response = await axios.get<BlogPost[]>('http://localhost:3009/post');
+    const response = await axios.get<BlogPost[]>('https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/post');
     console.log(response.data);
     posts.push(...response.data);
     setBlogPosts(posts);
   };
 
   const removePost = async (id: string): Promise<void> => {
-    await axios.delete(`http://localhost:3009/post/${id}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
+    await axios.delete(`https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/post/${id}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
     setBlogPosts(prev => {
       const newPrev = [...prev];
       const result = newPrev.filter(acc => acc.id !== id);
@@ -66,7 +66,7 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
 
   const updatePost = async (id: string, updates: Partial<BlogPost>): Promise<void> => {
     console.log(id, updates);
-    await axios.put('http://localhost:3009/post', { updates, id }, { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
+    await axios.put('https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/post', { updates, id }, { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
     setBlogPosts(prev => {
       const newPrev = [...prev];
       const index = newPrev.findIndex(acc => acc.id === id);
@@ -78,7 +78,7 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
   };
 
   const likePost = async (id: string, likes: number): Promise<void> => {
-    await axios.put('http://localhost:3009/like_post', { likes, id });
+    await axios.put('https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/like_post', { likes, id });
     setBlogPosts(prev => {
       const newPrev = [...prev];
       const index = newPrev.findIndex(acc => acc.id === id);
@@ -94,12 +94,12 @@ export const BlogProvider = ({ children }: BlogProviderProps) => {
   };
 
   const myPosts = async (): Promise<BlogPost[]> => {
-    const response = await axios.get<BlogPost[]>('http://localhost:3009/myposts', { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
+    const response = await axios.get<BlogPost[]>('https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/myposts', { headers: { 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` } });
     return response.data;
   };
 
   const getPosts = async (id: string): Promise<BlogPost> => {
-    const response = await axios.get<BlogPost>(`http://localhost:3009/get_post/${id}`);
+    const response = await axios.get<BlogPost>(`https://blogback-ejhddzbrgccehabb.westus2-01.azurewebsites.net/get_post/${id}`);
     console.log(response.data);
     return response.data;
   };
