@@ -107,7 +107,7 @@ export default function Post() {
   };
 
   return (
-    <>
+    <div className='overflow-x-hidden p-6 bg-gray-100 min-h-screen'>
       <Header />
       <div className="max-w-3xl mx-auto mt-8 p-4 bg-white rounded shadow">
         {displayName === post.owner && !isEditing && (
@@ -188,6 +188,6 @@ export default function Post() {
           </>
         )}
       </div>
-    </>
+    </div>
   );
 }
