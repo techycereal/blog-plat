@@ -51,7 +51,6 @@ export default function Account() {
           posts.map((post) => (
             <div key={post.id} className="w-full bg-white rounded-lg p-6 mb-4 shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-xl font-semibold text-gray-800">{post.name}</h3>
-              <p className="text-gray-600 mt-2" dangerouslySetInnerHTML={{ __html: post.content }}></p>
               <div className="mt-4 text-sm text-gray-500">By: {post.owner}</div>
               <Link
                 to={`/post/${post.id}`}
